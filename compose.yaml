@@ -1,0 +1,11 @@
+﻿name: lys.locadora
+services:
+  LYS.locadora.api:
+    image: lys.locadora.api
+    build:
+      context: .
+      dockerfile: LYS.Locadora.Api/Dockerfile
+    volumes:
+      - sqlite-vol:/var/docker_volume/sqlite
+volumes:
+  sqlite-vol:
