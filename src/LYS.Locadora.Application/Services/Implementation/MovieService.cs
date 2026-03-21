@@ -1,58 +1,59 @@
+using LYS.Locadora.Application.Context;
 using LYS.Locadora.Application.Model;
-using LYS.Locadora.Application.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace LYS.Locadora.Application.Services.Implementation;
 
-internal class MovieService(ILocadoraRepository repository) : IMovieService
+internal class MovieService(LocadoraDbContext dbContext) : IMovieService
 {
-    public ValueTask<List<Movie>> GetAllMoviesAsync(int pageSize = 10)
+    public Task<List<Movie>> GetAllMoviesAsync(int pageSize = 10)
     {
         if (pageSize < 1 || pageSize > 100)
         {
             pageSize = 10;
         }
-        
-        return repository.Movies.Take(pageSize).ToListAsync();
+
+        return dbContext.Movies.Take(pageSize).ToListAsync();
     }
 
-    public ValueTask<Movie?> GetMovieByIdAsync(int id)
+    public Task<Movie?> GetMovieByIdAsync(int id)
     {
-        return repository.Movies.FirstOrDefaultAsync(m => m.Id == id);
+        return dbContext.Movies.FirstOrDefaultAsync(m => m.Id == id);
     }
 
-    public ValueTask<List<Movie>> QueryMoviesAsync(Func<Movie, bool> predicate, int pageSize = 10)
+    public Task<List<Movie>> QueryMoviesAsync(Func<Movie, bool> predicate, int pageSize = 10)
     {
         if (pageSize < 1 || pageSize > 100)
         {
             pageSize = 10;
         }
-        
-        return repository.Movies.Where(predicate).ToListAsync();
+
+        return dbContext.Movies.Where(predicate).AsQueryable().ToListAsync();
     }
 
     public async Task<Movie?> CreateMovieAsync(Movie movie)
     {
-        repository.Add(movie);
-        await repository.SaveChangesAsync();
+        dbContext.Add<Movie>(movie);
+        await dbContext.SaveChangesAsync();
 
         return movie;
     }
 
     public async Task<Movie?> UpdateMovieAsync(Movie movie)
     { 
-        repository.Update(movie);
-        await repository.SaveChangesAsync();
+        dbContext.Entry(movie).State = EntityState.Modified;
+        await dbContext.SaveChangesAsync();
 
         return movie;
     }
 
     public async Task DeleteMovieAsync(int id)
     {
-        var movie = await repository.Movies.FirstOrDefaultAsync(m => m.Id == id);
+        var movie = await dbContext.Movies.FirstOrDefaultAsync(m => m.Id == id);
         if (movie != null)
         {
-            repository.Delete(movie);
-            await repository.SaveChangesAsync();
+            dbContext.Movies.Remove(movie);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

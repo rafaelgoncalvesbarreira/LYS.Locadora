@@ -2,6 +2,7 @@
 GET {{Host_Address}}/Movie/
 Accept: application/json
 
-
-
 ###
+
+GET {{Host_Address}}/Movie/1
+Accept: application/json
