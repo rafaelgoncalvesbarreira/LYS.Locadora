@@ -4,7 +4,6 @@
   </Folder>
   <Folder Name="/Src/">
     <Project Path="src/LYS.Locadora.Api/LYS.Locadora.Api.csproj" />
-    <Project Path="src/LYS.Locadora.Database/LYS.Locadora.Database.csproj" />
     <Project Path="src\LYS.Locadora.Application\LYS.Locadora.Application.csproj" />
   </Folder>
 </Solution>

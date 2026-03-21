@@ -3,9 +3,9 @@ using LYS.Locadora.Application.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace LYS.Locadora.Database;
+namespace LYS.Locadora.Application;
 
-public class LocadoraDbContext(IConfiguration appConfig) : DbContext, ILocadoraRepository
+internal class LocadoraDbContext(IConfiguration appConfig) : DbContext, ILocadoraRepository
 {
     public DbSet<Movie> Movies { get; set; }
     IAsyncEnumerable<Movie> ILocadoraRepository.Movies => Movies.AsAsyncEnumerable();

@@ -20,7 +20,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\LYS.Locadora.Application\LYS.Locadora.Application.csproj" />
-      <ProjectReference Include="..\LYS.Locadora.Database\LYS.Locadora.Database.csproj" />
     </ItemGroup>
 
 </Project>
