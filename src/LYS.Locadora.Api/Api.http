@@ -1,8 +1,8 @@
 
-GET {{Host_Address}}/Movie/
+GET {{Host_Address}}/api/Movie/
 Accept: application/json
 
 ###
 
-GET {{Host_Address}}/Movie/1
+GET {{Host_Address}}/api/Movie/1
 Accept: application/json

@@ -13,7 +13,7 @@ public class LocadoraSqlDesignTimeFactory: IDesignTimeDbContextFactory<LocadoraD
         }
         var optionsBuilder = new DbContextOptionsBuilder<LocadoraDbContext>();
         var connectionString = args[0];
-        optionsBuilder.UseSqlite(connectionString );
+        optionsBuilder.UseNpgsql(connectionString );
         
         return new LocadoraDbContext(optionsBuilder.Options);
     }

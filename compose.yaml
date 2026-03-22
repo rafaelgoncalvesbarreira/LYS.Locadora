@@ -1,11 +1,31 @@
 ﻿name: lys.locadora
 services:
   LYS.locadora.api:
-    image: lys.locadora.api
     build:
       context: .
-      dockerfile: LYS.Locadora.Api/Dockerfile
+      dockerfile: src/LYS.Locadora.Api/Dockerfile
+    ports:
+      - 8080:8080
+      - 8081:8081
+    networks:
+      - database
+  postgres_db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: lys
+      POSTGRES_DB: lyslocadora_db
     volumes:
-      - sqlite-vol:/var/docker_volume/sqlite
+      - postgres-db:/var/lib/postgresql
+    networks:
+      - database
 volumes:
-  sqlite-vol:
+#  sqlite-vol:
+  postgres-db:
+networks:
+  database:
+    driver: bridge

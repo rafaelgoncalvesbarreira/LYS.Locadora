@@ -7,7 +7,7 @@ using LYS.Locadora.Api.Mapping;
 namespace LYS.Locadora.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class MovieController(IMovieService movieService) : ControllerBase
 {
     [HttpGet]

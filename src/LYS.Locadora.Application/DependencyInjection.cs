@@ -12,4 +12,5 @@ public static class DependencyInjection
         return services
             .AddScoped<IMovieService,MovieService>();
     }
+    
 }
