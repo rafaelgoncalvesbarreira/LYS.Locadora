@@ -6,3 +6,16 @@ Accept: application/json
 
 GET {{Host_Address}}/api/Movie/1
 Accept: application/json
+
+####
+
+POST {{Host_Address}}/api/Movie
+Content-Type: application/json
+
+{
+  "title": "Citizen Kane",
+  "releaseDate": "1941-04-01",
+  "genre": "Drama",
+  "rating": 8.2,
+  "imageUrl": "https://m.media-amazon.com/images/M/MV5BYjk1ZDJlMmUtOWQ0Zi00MDM5LTk1OGYtODczNjFmMGYwZGVkXkEyXkFqcGc@._V1_.jpg"
+}

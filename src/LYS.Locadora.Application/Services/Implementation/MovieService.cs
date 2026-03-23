@@ -6,14 +6,16 @@ namespace LYS.Locadora.Application.Services.Implementation;
 
 internal class MovieService(LocadoraDbContext dbContext) : IMovieService
 {
-    public Task<List<Movie>> GetAllMoviesAsync(int pageSize = 10)
+    public Task<List<Movie>> GetAllMoviesAsync(int page = 1, int pageSize = 20)
     {
-        if (pageSize < 1 || pageSize > 100)
+        if (pageSize is < 1 or > 100)
         {
             pageSize = 10;
         }
+        
+        var skip = (page - 1) * pageSize;
 
-        return dbContext.Movies.Take(pageSize).ToListAsync();
+        return dbContext.Movies.Skip(skip).Take(pageSize).ToListAsync();
     }
 
     public Task<Movie?> GetMovieByIdAsync(int id)
@@ -21,14 +23,16 @@ internal class MovieService(LocadoraDbContext dbContext) : IMovieService
         return dbContext.Movies.FirstOrDefaultAsync(m => m.Id == id);
     }
 
-    public Task<List<Movie>> QueryMoviesAsync(Func<Movie, bool> predicate, int pageSize = 10)
+    public Task<List<Movie>> QueryMoviesAsync(Func<Movie, bool> predicate, int page = 1, int pageSize = 20)
     {
-        if (pageSize < 1 || pageSize > 100)
+        if (pageSize is < 1 or > 100)
         {
-            pageSize = 10;
+            pageSize = 20;
         }
+        
+        var skip = (page - 1) * pageSize;
 
-        return dbContext.Movies.Where(predicate).AsQueryable().ToListAsync();
+        return dbContext.Movies.Skip(skip).Take(pageSize).AsQueryable().ToListAsync();
     }
 
     public async Task<Movie?> CreateMovieAsync(Movie movie)

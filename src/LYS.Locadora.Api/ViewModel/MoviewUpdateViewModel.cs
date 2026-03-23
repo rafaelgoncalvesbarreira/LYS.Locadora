@@ -4,4 +4,5 @@ public record MoviewUpdateViewModel(int Id,
     string Title,
     DateOnly ReleaseDate,
     string Genre,
-    float Rating);
+    float Rating,
+    string ImageUrl);

@@ -11,9 +11,9 @@ namespace LYS.Locadora.Api.Controllers;
 public class MovieController(IMovieService movieService) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<List<MovieViewModel>>> AllMovies()
+    public async Task<ActionResult<List<MovieViewModel>>> AllMovies(int page = 1, int pageSize = 20)
     {
-        var movie = await movieService.GetAllMoviesAsync();
+        var movie = await movieService.GetAllMoviesAsync(page, pageSize);
         return movie.Select(x => x.ToViewModel()).ToList();
     }
     

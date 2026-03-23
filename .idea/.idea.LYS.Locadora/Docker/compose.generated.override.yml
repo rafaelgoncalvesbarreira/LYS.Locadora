@@ -15,7 +15,7 @@ services:
     - "--mode=server"
     - "--frontend-port=57000"
     - "--backend-port=57200"
-    - "--roslyn-worker-port=57436"
+    - "--roslyn-worker-port=57400"
     - "--timeout=60"
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
@@ -24,14 +24,14 @@ services:
       RESHARPER_LOG_CONF: "/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
     image: "lys.locadora.api:dev"
     ports:
-    - "127.0.0.1:57036:57000"
-    - "127.0.0.1:57236:57200"
-    - "127.0.0.1:57436:57436"
+    - "127.0.0.1:57000:57000"
+    - "127.0.0.1:57200:57200"
+    - "127.0.0.1:57400:57400"
     volumes:
     - "/home/leafarneo/RiderProjects/LYS.Locadora/src/LYS.Locadora.Api:/app:rw"
     - "/home/leafarneo/RiderProjects/LYS.Locadora:/src:rw"
     - "/home/leafarneo/.nuget/packages:/home/app/.nuget/packages"
     - "/home/leafarneo/.local/share/JetBrains/RiderRemoteDebugger/2025.3.3/Linux64:/opt/JetBrains/RiderDebuggerTools"
     - "/opt/rider/bin/backend-log.xml:/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
-    - "/home/leafarneo/.cache/JetBrains/Rider2025.3/log/DebuggerWorker/JetBrains.Debugger.Worker.2026_3_22_15_01_45:/var/opt/JetBrains/RiderDebuggerTools:rw"
+    - "/home/leafarneo/.cache/JetBrains/Rider2025.3/log/DebuggerWorker/JetBrains.Debugger.Worker.2026_3_23_12_12_49:/var/opt/JetBrains/RiderDebuggerTools:rw"
     working_dir: "/app"

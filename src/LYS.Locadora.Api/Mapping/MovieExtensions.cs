@@ -7,7 +7,7 @@ public static class MovieExtensions
 {
     public static MovieViewModel ToViewModel(this Movie movie)
     {
-        return new MovieViewModel(movie.Id, movie.Title, movie.ReleaseDate, movie.Genre, movie.Rating);
+        return new MovieViewModel(movie.Id, movie.Title, movie.ReleaseDate, movie.Genre, movie.Rating, movie.ImageUrl);
     }
     
     public static Movie ToEntity(this MovieCreateViewModel movie)
@@ -18,6 +18,7 @@ public static class MovieExtensions
             Genre = movie.Genre,
             ReleaseDate = movie.ReleaseDate,
             Rating = movie.Rating,
+            ImageUrl = movie.ImageUrl,
         };
     }
     
@@ -30,6 +31,7 @@ public static class MovieExtensions
             Genre = movie.Genre,
             ReleaseDate = movie.ReleaseDate,
             Rating = movie.Rating,
+            ImageUrl = movie.ImageUrl,
         };
     }
     
