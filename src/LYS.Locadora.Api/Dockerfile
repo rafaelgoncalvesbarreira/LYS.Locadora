@@ -5,16 +5,16 @@ EXPOSE 8080
 EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
-ARG BUILD_CONFIGURATION=Release
+ARG BUILD_CONFIGURATION=Debug
 WORKDIR /src
-COPY ["LYS.Locadora.Api/LYS.Locadora.Api.csproj", "LYS.Locadora.Api/"]
+COPY ["src/LYS.Locadora.Api/LYS.Locadora.Api.csproj", "LYS.Locadora.Api/"]
 RUN dotnet restore "LYS.Locadora.Api/LYS.Locadora.Api.csproj"
 COPY . .
-WORKDIR "/src/LYS.Locadora.Api"
+WORKDIR "/src/src/LYS.Locadora.Api"
 RUN dotnet build "./LYS.Locadora.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
+ARG BUILD_CONFIGURATION=Debug
 RUN dotnet publish "./LYS.Locadora.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final

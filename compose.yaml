@@ -1,6 +1,6 @@
 ﻿name: lys.locadora
 services:
-  LYS.locadora.api:
+  lys.locadora.api:
     build:
       context: .
       dockerfile: src/LYS.Locadora.Api/Dockerfile
@@ -9,6 +9,8 @@ services:
       - 8081:8081
     networks:
       - database
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
   postgres_db:
     image: postgres
     restart: always

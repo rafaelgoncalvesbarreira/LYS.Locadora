@@ -13,7 +13,7 @@ POST {{Host_Address}}/api/Movie
 Content-Type: application/json
 
 {
-  "title": "Citizen Kane",
+  "title": "Citizen Kane 2",
   "releaseDate": "1941-04-01",
   "genre": "Drama",
   "rating": 8.2,
